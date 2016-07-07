@@ -1,35 +1,20 @@
 class Card {
 	char pip;
 	char suit;
-	int rank;
-	char pipArray[] = {'0', 'A','2', '3', '4', '5', '6', '7', '8', '9', 'T', 							'J', 'Q', 'K'};
-	char[] suitarray = {'C','D','H','S'};
+	char[] pipArray = {'0', 'A','2', '3', '4', '5', '6', '7', '8', '9', 'T', 							'J', 'Q', 'K'};
+	char[] suitArray = {'C','D','H','S'};
 
 	Card(char pip, char suit) {
 		this.pip = pip;
 		this.suit = suit;
-		rank = 0;
 	}
-	boolean compare(Card c) {
-		int i = 0;
-		
-		for(;i < pipArray.length; i++) {
-			if(pip == pipArray[i]) {
-				rank += i;
-			}
-			if(c.pip == pipArray[i]) {
-				c.rank += i;
-			}
-		}
-		for(i = 0; i < suitArray.length;i++) {
-			if(suit == suitArray[i]) {
-				rank += i*10;
-			}
-			if(c.suit == suitArray[i]) {
-				c.rank += i*10;
-			}
-		}
-		return rank > c.rank ? true : false;
+	int compare(Card c1, Card c2) {
+		if (c1.getPip() > c2.getPip()) 
+		return 1;
+		else if (c1.getPip() < c2.getPip())
+		return -1;
+		else
+		return 0;
 	}
 	public int getPip() {
 		int pipVal = 0;
@@ -39,30 +24,14 @@ class Card {
 			}
 		}
 		return pipVal;
-	}
-	public int getSuit() {
-		int suitVal = 0;
-		for (int i = 0; i < suitArray.length; i++) {
-			if (suit == suitArray[i]) {
-				suitVal = i;
-			}
-		}
-		return suitVal;
 	}	
 }
 class Cards {
 	public static void main(String[] args){
 		Card card1 = new Card('3','D');
 		Card card2 = new Card('J','C');
-		if(card2.compare(card1)) {
-			System.out.println("card2");
-		}else {
-			System.out.println("card1");
-		}
+		
 		System.out.println(card1.getPip());
 		System.out.println(card2.getPip());
-		System.out.println(card1.getSuit());
-		System.out.println(card2.getSuit());
-	
 	}
 }
