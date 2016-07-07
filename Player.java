@@ -8,5 +8,10 @@ class Player {
 		}
 		score = 0;
 	}
-	
+	int bidCard(int diamondVal) {
+		Collections.shuffle(availableCards);
+		int bidValue = (availableCards.get(0)).getPipVal();
+		availableCards.remove(0);
+		return bidValue;
+	}
 }
