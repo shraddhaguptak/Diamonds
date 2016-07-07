@@ -12,7 +12,7 @@ class Card {
 	boolean compare(Card c) {
 		int i = 0;
 		char[] suitarray = {'C','D','H','S','\0'};
-		for(;i < pipArray.length-1;i++) {
+		for(;i < pipArray.length;i++) {
 			if(pip == pipArray[i]) {
 				rank += i;
 			}
@@ -32,7 +32,7 @@ class Card {
 	}
 	public int getPip() {
 		int pipVal = 0;
-		for (int i = 0; i < pipArray.length-1; i++) {
+		for (int i = 0; i < pipArray.length; i++) {
 			if (pip == pipArray[i]) {
 				pipVal = i;
 			}
