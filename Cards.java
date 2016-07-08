@@ -16,7 +16,7 @@ class Cards {
 		this.pipVal = pipVal;
 		this.suit = suit;
 	}
-	int compare(Card c) {
+	int compare(Cards c) {
 		return getPip() - c.getPip(); 
 	}
 	public int getPip() {
