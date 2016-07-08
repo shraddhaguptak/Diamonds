@@ -19,7 +19,7 @@ class Player {
 		for (Cards c : availableCards) {
             		if ( c.getPipVal() == k) {
                 		validInput = 1;
-                		availableCards.remove(k);
+                		availableCards.remove(c);
                 		return k;
             		}
         	}
