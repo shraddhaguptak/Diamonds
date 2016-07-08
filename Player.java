@@ -10,24 +10,20 @@ class Player {
 		score = 0;
 	}
 	int bidValueFromComputer(int diamondVal) {
-		int k = 0;
+		int value = 0;
 		int validInput = 0;
 		if(diamondVal >= 0 && diamondVal <= 7)
-	       		k = random_num_gen(1,7);
+	       		value = random_num_gen(1,7);
 	  	 else if(diamondVal >= 8 && diamondVal <=13)
-	       		k = random_num_gen(8,13);
+	       		value = random_num_gen(8,13);
 		for (Cards c : availableCards) {
-            		if ( c.getPipVal() == k) {
+            		if ( c.getPipVal() == value) {
                 		validInput = 1;
                 		availableCards.remove(c);
-                		return k;
+                		return value;
             		}
         	}
-		if (validInput != 1) {
-        		return bidValueFromComputer(diamondVal);
-        	}
-        	else
-            		return 0;
+        return bidValueFromComputer(diamondVal);
 	}
 	public int random_num_gen(int min ,int max){
 		Random rn = new Random();
