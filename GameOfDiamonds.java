@@ -33,7 +33,7 @@ public class GameOfDiamonds {
         for (int i = 0; i < 13; i++) {
             int bidValUsr = user.bidValueFromUser(diamonds.get(i).getPipVal());
             System.out.println("user bid value is: "+ bidValUsr);
-            int bidValComp = computer.bidValue(diamonds.get(i).getPipVal());
+            int bidValComp = computer.bidValueFromComputer(diamonds.get(i).getPipVal());
             System.out.println("computer bid value is: "+ bidValComp);
             System.out.println(bidResult(calBidDiff(bidValComp, bidValUsr)));
             System.out.println();
