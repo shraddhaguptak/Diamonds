@@ -1,25 +1,56 @@
 import java.util.*;
 class Player {
-	ArrayList<Card> availableCards = new ArrayList<Card>();
+	ArrayList<Cards> availableCards = new ArrayList<Cards>();
 	char suit;
 	float score;
 	Player(char suit) {
 		for (int i = 1; i <= 13; i++ ) {
-			availableCards.add(new Card(i, this.suit));
+			availableCards.add(new Cards(i, this.suit));
 		}
 		score = 0;
 	}
-	int bidValue(int diamondVal) {
-		Collections.shuffle(availableCards);
-		int bidValue = (availableCards.get(0)).getPipVal();
-		availableCards.remove(0);
-		return bidValue;
+	int bidValueFromComputer(int diamondVal) {
+		int k = 0;
+		int validInput = 0;
+		if(diamondVal >= 0 && diamondVal <= 7)
+	       		k = random_num_gen(1,7);
+	  	 else if(diamondVal >= 8 && diamondVal <=13)
+	       		k = random_num_gen(8,13);
+		for (Cards c : availableCards) {
+            		if ( c.getPipVal() == k) {
+                		validInput = 1;
+                		availableCards.remove(k);
+                		return k;
+            		}
+        	}
+		if (validInput != 1) {
+        		return bidValueFromComputer(diamondVal);
+        	}
+        	else
+            		return 0;
+	}
+	public int random_num_gen(int min ,int max){
+		Random rn = new Random();
+		   return min + rn.nextInt(max - min + 1);      
 	}
 	int bidValueFromUser(int diamondVal) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("diamond value: " + diamondVal);
-		System.out.println("enter bidding value: ");
-		int bidValueFromUser = sc.nextInt();
-		return bidValueFromUser;
-	}
+        	Scanner sc = new Scanner(System.in);
+        	int validInput = 0;
+        	System.out.println("diamond value: " + diamondVal);
+        	System.out.println("enter bidding value: ");
+        	int bidValueFromUser = sc.nextInt();
+        	for (Cards c : availableCards) {
+            		if ( c.getPipVal() == bidValueFromUser) {
+                		validInput = 1;
+                		availableCards.remove(c);
+                		return bidValueFromUser;
+            		}
+        	}
+        	if (validInput != 1) {
+            		System.out.println("Invalid Input");
+            		return bidValueFromUser(diamondVal);
+        	}
+        	else
+            		return 0;
+    }
 }
